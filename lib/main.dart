@@ -16,14 +16,18 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            DrawerHeader(child: Container(color: Colors.blue,)),
-            Text("My App")
-          ],
-        ),
+
+      floatingActionButton: Builder(
+        builder: (BuildContext bc)=> FloatingActionButton(
+          onPressed: (){
+            //this will show a snack bar
+            Scaffold.of(bc).showSnackBar(
+                SnackBar(content: Text("My SnackBar"))
+            );
+          }
       ),
+      )
+
     );
   }
 }
