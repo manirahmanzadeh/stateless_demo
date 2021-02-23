@@ -28,6 +28,13 @@ class MyHomePage extends StatelessWidget {
                 onSaved: (v){
                   signUpModel.email = v;
                 },
+                validator: (v){
+                  if(v.isEmpty){
+                    return "not correct";
+                  }else{
+                    return null;
+                  }
+                },
               ),
               TextFormField(
                 decoration: InputDecoration(
@@ -35,6 +42,13 @@ class MyHomePage extends StatelessWidget {
                 ),
                 onSaved: (v){
                   signUpModel.firstName = v;
+                },
+                validator: (v){
+                  if(v.isEmpty){
+                    return "not correct";
+                  }else{
+                    return null;
+                  }
                 },
               ),
               TextFormField(
@@ -44,6 +58,13 @@ class MyHomePage extends StatelessWidget {
                 onSaved: (v){
                   signUpModel.lastName = v;
                 },
+                validator: (v){
+                  if(v.isEmpty){
+                    return "not correct";
+                  }else{
+                    return null;
+                  }
+                },
               ),
               TextFormField(
                 decoration: InputDecoration(
@@ -51,6 +72,13 @@ class MyHomePage extends StatelessWidget {
                 ),
                 onSaved: (v){
                   signUpModel.city = v;
+                },
+                validator: (v){
+                  if(v.isEmpty){
+                    return "not correct";
+                  }else{
+                    return null;
+                  }
                 },
               ),
               TextFormField(
@@ -60,11 +88,22 @@ class MyHomePage extends StatelessWidget {
                 onSaved: (v){
                   signUpModel.password = v;
                 },
+                validator: (v){
+                  if(v.length<6){
+                    return "not correct";
+                  }else{
+                    return null;
+                  }
+                },
               ),
               Builder(builder: (BuildContext ctx)=> RaisedButton(
                   child: Text("Sign Up"),
                   onPressed: () {
-                    formKey.currentState.save();
+                    if(formKey.currentState.validate()){
+                      formKey.currentState.save();
+                    }else{
+                      Scaffold.of(ctx).showSnackBar(SnackBar(content: Text("not valid")));
+                    }
                   }
               ))
 
